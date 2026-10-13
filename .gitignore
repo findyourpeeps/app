@@ -20,6 +20,9 @@
 # production
 /build
 
+# coming-soon update emails (local only)
+/data
+
 # misc
 .DS_Store
 *.pem

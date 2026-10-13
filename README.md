@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Find Your Peeps (`findyourpeeps`)
 
-## Getting Started
+Next.js App Router application for curated pickleball nights (ages 25–45, email only, invitation-only). Member routes and `/ops` staff routes. **Local development uses an in-memory product stub**—no live Supabase or Resend.
 
-First, run the development server:
+## Commands
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm test
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Health check: `GET /api/health`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Slices in this tree
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **S0–S6:** identity, profile, availability, venues/events, curation, invitations (see `src/lib/product/slices-s2-s6.test.ts`).
+- **S7–S12:** reconfirmation, go/no-go, material reschedule, online check-in, follow-up, connections (verified email, 72h authorization), safety reports/blocks, deletion request/cancel and purge helper (see `src/lib/product/slices-s7-s12.test.ts`).
 
-## Learn More
+Outbox rows remain **held** (no external email).
 
-To learn more about Next.js, take a look at the following resources:
+## Auth stub
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`src/lib/auth/local-auth-store.ts` implements magic links, signup, and role grants for local dev.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+SQL migrations under `supabase/migrations/` mirror the spec schema incrementally; production integration waits on launch blockers.

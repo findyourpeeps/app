@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 
+const staticSite = process.env.NEXT_PUBLIC_STATIC_SITE === "1";
+
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  ...(staticSite
+    ? { output: "export" as const, images: { unoptimized: true } }
+    : { cacheComponents: true, partialPrefetching: true }),
   turbopack: {
     rules: {
       "*.css": {

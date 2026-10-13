@@ -1,26 +1,58 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f9f2e6;
+  --foreground: #3f445b;
+  --gold: #ce9a00;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-ink: #3f445b;
+  --color-gold: #ce9a00;
+  --color-cream: #f9f2e6;
+  --color-bubble: #57d5fe;
+  --color-peep: #fec157;
+  --font-sans: var(--font-raleway), "Raleway", sans-serif;
+  --font-mono: var(--font-roboto-mono), "Roboto Mono", ui-monospace, monospace;
+  --color-zinc-50: #fffdf8;
+  --color-zinc-100: #f9f2e6;
+  --color-zinc-200: #eadfce;
+  --color-zinc-300: #e0d3bf;
+  --color-zinc-400: #8a7358;
+  --color-zinc-500: #6e5c45;
+  --color-zinc-600: #5c6278;
+  --color-zinc-700: #4e556c;
+  --color-zinc-800: #32364a;
+  --color-zinc-900: #3f445b;
+  --color-zinc-950: #2a2e3f;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.03em;
+}
+
+input,
+select,
+textarea {
+  background: #fff;
+  color: var(--foreground);
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
