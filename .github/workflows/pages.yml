@@ -32,13 +32,17 @@ jobs:
       - name: Keep only the coming-soon page
         run: |
           find src/app -mindepth 1 -maxdepth 1 \
-            ! -name page.tsx ! -name layout.tsx ! -name globals.css ! -name favicon.ico \
+            ! -name page.tsx ! -name layout.tsx ! -name globals.css ! -name icon.svg \
             -exec rm -rf {} +
           rm -f src/middleware.ts
 
       - run: npm run build
         env:
           NEXT_PUBLIC_STATIC_SITE: "1"
+
+      # The site is served from /app on github.io and from / on the custom
+      # domain. Root-absolute /_next and /brand URLs miss in one of those.
+      - run: node scripts/relativize-pages.mjs
 
       - uses: actions/upload-pages-artifact@v3
         with:

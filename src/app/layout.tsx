@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Raleway, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -16,7 +16,16 @@ const robotoMono = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: "Find Your Peeps",
-  description: "Good company. Great possibilities.",
+  description: "Good company. Great possibilities. Coming soon.",
+  openGraph: {
+    title: "Find Your Peeps",
+    description: "Good company. Great possibilities. Coming soon.",
+    type: "website",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f9f2e6",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
